@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  /* Watery Light Mode - Sunlight filtering down */
+  --water-top: #e0f2fe; /* Crisp surface light (Sky 100) */
+  --water-mid: #38bdf8; /* Shimmering mid-depth (Sky 400) */
+  --water-bottom: #0369a1; /* Deep clean water (Sky 700) */
+  --foreground: #0f172a; /* Slate 900 for sharp readability */
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Deep Ocean Dark Mode - The Abyssal look */
+    --water-top: #083344; /* Deep twilight cyan (Cyan 950) */
+    --water-mid: #1e3a8a; /* Midnight ocean blue (Blue 900) */
+    --water-bottom: #020617; /* Pure ocean depths (Slate 950) */
+    --foreground: #f8fafc; /* Crisp off-white for contrast */
+  }
+}
+
+body {
+  /* Creates the underwater gradient flow */
+  background: linear-gradient(
+    180deg,
+    var(--water-top) 0%,
+    var(--water-mid) 50%,
+    var(--water-bottom) 100%
+  );
+
+  /* Crucial: Keeps the background locked to the viewport so the water doesn't stretch or break when scrolling */
+  background-attachment: fixed;
+
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
