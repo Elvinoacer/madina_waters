@@ -28,12 +28,13 @@ export default function Navbar() {
         <div className="water-bubbles" />
 
         {/* Nav Content Container */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex justify-between items-center h-20 gap-4">
-            {/* Logo Container */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+          {/* Adjusted height and gaps for mobile */}
+          <div className="flex justify-between items-center h-16 sm:h-20 gap-2 sm:gap-4">
+            {/* Logo Container - Scaled down for mobile, prevented from shrinking */}
             <Link
               href="/"
-              className="relative flex items-center h-14 w-36 sm:w-44 shrink-0 transition-transform duration-300 active:scale-95 hover:scale-102 mix-blend-multiply"
+              className="relative flex items-center h-8 sm:h-14 w-28 sm:w-44 shrink-0 transition-transform duration-300 active:scale-95 hover:scale-102 mix-blend-multiply"
             >
               <Image
                 src="/images/madina-logo.png"
@@ -41,7 +42,7 @@ export default function Navbar() {
                 fill
                 priority
                 className="object-contain object-left"
-                sizes="(max-w-sm) 144px, 176px"
+                sizes="(max-w-sm) 112px, 176px"
               />
             </Link>
 
@@ -62,16 +63,16 @@ export default function Navbar() {
             </nav>
 
             {/* Action Area: Mobile Hamburger + Order Button */}
-            <div className="flex items-center gap-3">
-              {/* Mobile Menu Toggle Button */}
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              {/* Mobile Menu Toggle Button - Scaled down slightly */}
               <button
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="xl:hidden p-2 text-blue-950 hover:bg-blue-100/50 rounded-xl transition-colors active:scale-95"
+                className="xl:hidden p-1.5 sm:p-2 text-blue-950 hover:bg-blue-100/50 rounded-xl transition-colors active:scale-95 shrink-0"
                 aria-label="Open Navigation Menu"
                 aria-expanded={isMobileMenuOpen}
               >
                 <svg
-                  className="w-7 h-7"
+                  className="w-6 h-6 sm:w-7 sm:h-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -85,9 +86,10 @@ export default function Navbar() {
                 </svg>
               </button>
 
+              {/* Order Button - added whitespace-nowrap and mobile-specific padding/text size */}
               <Link
                 href="/order"
-                className="bg-linear-to-r from-red-600 to-rose-500 text-white px-5 sm:px-6 py-2.5 rounded-full text-sm font-bold tracking-wide shadow-md shadow-red-600/20 hover:shadow-xl hover:shadow-red-600/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 transform-gpu"
+                className="bg-linear-to-r from-red-600 to-rose-500 text-white px-3.5 py-1.5 sm:px-6 sm:py-2.5 rounded-full text-[13px] sm:text-sm font-bold tracking-wide shadow-md shadow-red-600/20 hover:shadow-xl hover:shadow-red-600/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 transform-gpu whitespace-nowrap shrink-0"
               >
                 Order Now
               </Link>
@@ -96,26 +98,26 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Navigation Takeover Overlay */}
+      {/* Mobile Navigation Takeover Overlay - Cleaned up and modernized */}
       <div
-        className={`fixed inset-0 bg-white/95 backdrop-blur-xl z-100 transition-all duration-300 flex flex-col xl:hidden ${
+        className={`fixed inset-0 bg-white/95 backdrop-blur-xl z-[100] transition-all duration-300 flex flex-col xl:hidden ${
           isMobileMenuOpen
             ? "opacity-100 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-4"
         }`}
         aria-hidden={!isMobileMenuOpen}
       >
-        <div className="flex justify-between items-center px-6 h-20 border-b border-sky-100 mb-6">
-          <span className="text-blue-950 font-extrabold tracking-widest uppercase text-sm">
-            Navigation
+        <div className="flex justify-between items-center px-6 h-16 sm:h-20 border-b border-sky-100/50 mb-4 shadow-sm shadow-sky-100/20">
+          <span className="text-blue-950 font-extrabold tracking-widest uppercase text-xs sm:text-sm">
+            Menu
           </span>
           <button
             onClick={() => setIsMobileMenuOpen(false)}
-            className="p-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors active:scale-95"
+            className="p-1.5 sm:p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors active:scale-95"
             aria-label="Close Navigation Menu"
           >
             <svg
-              className="w-8 h-8"
+              className="w-7 h-7 sm:w-8 sm:h-8"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -130,13 +132,14 @@ export default function Navbar() {
           </button>
         </div>
 
-        <nav className="flex flex-col px-8 gap-6 overflow-y-auto pb-20">
+        {/* Refined mobile links - Removed heavy borders, added rounded hover states */}
+        <nav className="flex flex-col px-6 gap-2 overflow-y-auto pb-20">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.path}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-2xl font-black text-blue-950 hover:text-blue-600 transition-colors border-b border-sky-100/50 pb-4"
+              className="text-lg sm:text-xl font-bold text-blue-900/80 hover:text-blue-600 hover:bg-blue-50/50 transition-all rounded-2xl px-4 py-3 active:scale-[0.98]"
             >
               {link.name}
             </Link>
